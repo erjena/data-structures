@@ -1,7 +1,8 @@
 var Queue = function() {
-  // Hey! Rewrite in the new style. Your code will wind up looking very similar,
-  // but try not not reference your old code in writing the new style.
   var myQueue = {};
+  myQueue.storage = {};
+  myQueue.read = 1;
+  myQueue.write = 1;
   myQueue.enqueue = enqueue;
   myQueue.dequeue = dequeue;
   myQueue.size = size;
@@ -12,13 +13,20 @@ var queueMethods = {};
 
 
 var enqueue = function(val) {
-  var 
+   this.storage[this.write] = val;
+   this.write++;
 };
 
-queueMethods.dequeue = function() {
-
+var dequeue = function() {
+  if (this.write === this.read) {
+    return;
+  }
+  var result = this.storage[this.read];
+  delete this.storage[this.read];
+  this.read++;
+  return result;
 };
 
-queueMethods.size = function() {
-
+var size = function() {
+  return this.write - this.read;
 }
