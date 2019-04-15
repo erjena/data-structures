@@ -2,7 +2,7 @@ describe('set', function() {
   var set;
 
   beforeEach(function() {
-    set = Set();
+    set = MySet();
   });
 
   it('should have methods named "add", "contains", and "remove"', function() {
